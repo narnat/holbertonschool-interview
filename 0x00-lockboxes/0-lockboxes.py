@@ -19,11 +19,9 @@ def canUnlockAll(boxes):
     #                 del b[ki]
     while stack_of_keys:
         room = stack_of_keys.pop()
-        if room >= len(boxes) or room < 0:
-            continue
         for key in boxes[room]:
-
-            if key not in visited:
+            if isinstance(
+                    key, int) and 0 <= key < len(boxes) and key not in visited:
                 visited.add(key)
                 stack_of_keys.append(key)
 
