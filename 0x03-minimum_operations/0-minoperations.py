@@ -17,6 +17,8 @@ def sum_of_prime_factors(n):
         while n % i == 0:
             n = n // i
             res += i
+            if n < 2:
+                break
     if n >= 2:  # Case where n is prime number
         res += n
     return res
