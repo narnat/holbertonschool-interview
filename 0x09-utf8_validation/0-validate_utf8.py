@@ -10,7 +10,7 @@ def validUTF8(data):
     for n in data:
         if byte_cnt:
             byte_cnt -= 1
-            if (((n & 0xff) >> 6) != 2):
+            if ((n >> 6) != 2):
                 return False
         elif not (n & 0x80):      # 1 byte
             byte_cnt = 0
