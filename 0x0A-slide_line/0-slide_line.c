@@ -19,14 +19,13 @@ void slide_left(int *line, size_t size)
 				last_val = line[j];
 			else if (last_val == line[j])
 			{
-				line[i] = last_val * 2;
-				i++;
-				last_val = line[j] = 0;
+				line[i++] = last_val * 2;
+				last_val = 0;
 			}
 			else
 			{
+				line[i++] = last_val;
 				last_val = line[j];
-				i++;
 			}
 		}
 	}
@@ -56,14 +55,13 @@ void slide_right(int *line, size_t size)
 				last_val = line[j];
 			else if (last_val == line[j])
 			{
-				line[i] = last_val * 2;
-				i--;
-				last_val = line[j] = 0;
+				line[i--] = last_val * 2;
+				last_val = 0;
 			}
 			else
 			{
+				line[i--] = last_val;
 				last_val = line[j];
-				i--;
 			}
 		}
 	}
