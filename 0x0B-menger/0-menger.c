@@ -9,11 +9,10 @@
 */
 int put_space(size_t row, size_t col)
 {
-	for (;; row /= 3, col /= 3)
+	for (; row && col; row /= 3, col /= 3)
 		if (row % 3 == 1 && col % 3 == 1)
 			return (1);
-		else if (!row || !col)
-			return (0);
+	return (0);
 }
 
 /**
