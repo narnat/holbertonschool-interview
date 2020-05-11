@@ -1,13 +1,12 @@
 #!/usr/bin/python3
 ''' N queens problem '''
 import sys
+from copy import deepcopy
 
 
 def is_valid(board, row):
-    # print(board)
     for i in range(row):
         diff = abs(board[i][1] - board[row][1])
-        # print("col: ", board[i][1], "row: ", row)
         if diff == 0 or diff == row - i:
             return False
     return True
@@ -15,13 +14,13 @@ def is_valid(board, row):
 
 def n_queens(res, board, row, n):
     if row == n:
-        res.append(board.copy())
+        res.append(deepcopy(board))
     else:
         for col in range(n):
-            board.append([row, col])
+            board[row][1] = col
             if is_valid(board, row):
                 n_queens(res, board, row + 1, n)
-            board.pop()
+            board[row][1] = -1
 
 
 if __name__ == '__main__':
@@ -38,6 +37,7 @@ if __name__ == '__main__':
         exit(1)
 
     res = []
-    n_queens(res, [], 0, n)
+    board = [[i, -1] for i in range(n)]
+    n_queens(res, board, 0, n)
     for i in res:
         print(i)
