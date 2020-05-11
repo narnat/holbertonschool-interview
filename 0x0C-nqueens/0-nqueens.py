@@ -14,13 +14,14 @@ def is_valid(board, row):
 
 def n_queens(res, board, row, n):
     if row == n:
+        # Deep copy is needed because board is 2D list
+        # or you can just print the board if task is to dislay solutions
         res.append(deepcopy(board))
     else:
         for col in range(n):
             board[row][1] = col
             if is_valid(board, row):
                 n_queens(res, board, row + 1, n)
-            board[row][1] = -1
 
 
 if __name__ == '__main__':
