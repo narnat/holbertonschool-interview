@@ -14,7 +14,7 @@ def is_valid(board, row):
 
 def n_queens(res, board, row, n):
     if row == n:
-        # Deep copy is needed because board is 2D list
+        # Deep copy is needed because board is a 2D list
         # or you can just print the board if task is to dislay solutions
         res.append(deepcopy(board))
     else:
