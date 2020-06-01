@@ -1,16 +1,16 @@
 #!/usr/bin/node
 const request = require('request');
 
-async function send (person) {
-  return new Promise(function (resolve, reject) {
-    request(person, function (error, response, body) {
-      if (error) {
-        reject(error);
-      } else {
-        resolve(JSON.parse(body).name);
-      }
+function send (person) {
+    return new Promise(function (resolve, reject) {
+	request(person, function (error, response, body) {
+	    if (error || respons.code > 203) {
+		reject(error);
+	    } else {
+		resolve(JSON.parse(body).name);
+	    }
+	});
     });
-  });
 }
 
 request(`https://swapi-api.hbtn.io/api/films/${process.argv[2]}`,
