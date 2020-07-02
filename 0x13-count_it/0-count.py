@@ -6,6 +6,7 @@ import requests
 def count_words(subreddit, word_list, first_call=True, after="", dic={}):
     """Cound # of keywords"""
     if first_call:
+        word_list = list(set(word_list))
         for i, e in enumerate(word_list):
             word_list[i] = e.lower()
         d = count_words(subreddit, word_list, False)
