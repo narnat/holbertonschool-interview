@@ -20,8 +20,8 @@ request(`https://swapi-api.hbtn.io/api/films/${process.argv[2]}`,
     } else {
       const people = JSON.parse(body).characters;
       for (let i = 0; i < people.length; ++i) {
-        const name = await send(people[i]);
-        console.log(name);
+          const name = await send(people[i]);
+          console.log(name);
       }
     }
   });

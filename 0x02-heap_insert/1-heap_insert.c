@@ -73,7 +73,7 @@ size_t binary_tree_height(const binary_tree_t *tree)
 
 
 /**
- * heapify - heapifies node
+ * heapify - heapifies node, sift up
  * @node: inserted node
  * Return: returns the current node
  */
@@ -81,9 +81,7 @@ heap_t *heapify(heap_t *node)
 {
 	int temp;
 
-	if (!node || !node->parent)
-		return (node);
-	while (node->parent)
+	while (node && node->parent)
 	{
 		if (node->n < node->parent->n)
 			return (node);
@@ -96,12 +94,12 @@ heap_t *heapify(heap_t *node)
 }
 
 /**
- * heap_insert - function that inserts a value in Max Binary Heap
+ * heap_insert_2 - function that inserts a value in Max Binary Heap
  * @root: binary tree
  * @value: value of the new node
  * Return: a pointer to the created node, or NULL on failure
  */
-heap_t *heap_insert(heap_t **root, int value)
+heap_t *heap_insert_2(heap_t **root, int value)
 {
 	heap_t *temp = NULL;
 	int r_full, l_full, r_height, l_height;
@@ -139,4 +137,75 @@ heap_t *heap_insert(heap_t **root, int value)
 			temp = temp->right;
 	}
 	return (NULL);
+}
+
+/**
+ * heap_insert - function that inserts a value in Max Binary Heap
+ * @root: binary tree
+ * @value: value of the new node
+ * Return: a pointer to the created node, or NULL on failure
+ */
+heap_t *heap_insert(heap_t **root, int value)
+{
+	static heap_t *last_node;
+	heap_t *new_node = binary_tree_node(NULL, value);
+
+	if (!new_node || !root)
+		return (NULL);
+
+	if (!*root && !last_node)
+	{
+		last_node = new_node;
+		return (*root = new_node);
+	}
+	if (!last_node->parent)
+	{
+		if (!last_node->left)
+		{
+			last_node->left = new_node;
+			new_node->parent = last_node;
+			last_node = new_node;
+		}
+		else
+		{
+			last_node->right = new_node;
+			new_node->parent = last_node;
+			last_node = new_node;
+		}
+		return (heapify(new_node));
+	}
+	if (last_node->parent->right)
+	{
+		/* insert on left side */
+		printf("wrong condition whe tree is full\n");
+		if (!last_node->parent->parent || last_node->parent->parent->right->left)
+		{
+			/* tree is full, go to leftmost node */
+			printf("Tree is full, last_node: %d\n", last_node->n);
+			while (last_node->parent)
+				last_node = last_node->parent;
+			while (last_node->left)
+				last_node = last_node->left;
+			last_node->left = new_node;
+			new_node->parent = last_node->left;
+			return (heapify(new_node));
+		}
+		else
+		{
+			printf("wrong condition whe tree is full\n");
+			last_node->parent->parent->right->left = new_node;
+			new_node = last_node->parent->parent->right->left;
+			last_node = new_node;
+			return (heapify(new_node));
+		}
+	}
+	else
+	{
+		/* Insert on right side */
+		last_node->parent->right = new_node;
+		new_node = last_node->parent->right;
+		last_node = new_node;
+		return (heapify(new_node));
+	}
+
 }

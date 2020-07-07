@@ -15,4 +15,14 @@ data = [229, 65, 127, 256]
 print (validUTF8(data))
 
 data = [229, 65]
-print(validUTF8(data))
+print (validUTF8(data))
+
+data = [450, 418]
+print (validUTF8(data))
+
+data = [256, 128]
+print (validUTF8(data))
+
+data = [0xff]
+print (validUTF8(data))
+
