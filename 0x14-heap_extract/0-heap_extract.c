@@ -130,7 +130,6 @@ int heap_extract(heap_t **root)
 	last = get_nth_node(*root, get_size(*root));
 	data = (*root)->n;
 	(*root)->n = last->n;
-	printf("Last node %d\n", last->n);
 	if (last->parent)
 	{
 		if (last->parent->left == last)
