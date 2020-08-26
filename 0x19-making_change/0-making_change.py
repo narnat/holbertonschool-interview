@@ -29,6 +29,8 @@ def makeChange(coins, total):
     Time: O(total * len(coins))
     Space: O(total)
     '''
+    if total <= 0:
+        return 0
     dp = [0] + [total + 1] * total
     for coin in coins:
         for i in range(coin, total + 1):
