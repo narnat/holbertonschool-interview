@@ -44,7 +44,10 @@ List *add_node_end(List **list, char *str)
 		(*list)->prev = node;
 	}
 	else
+	{
 		*list = node;
+		node->prev = node->next = node;
+	}
 
 	return (node);
 }
