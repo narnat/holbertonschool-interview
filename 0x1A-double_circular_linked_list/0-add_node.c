@@ -13,6 +13,11 @@ List *create_node(char *str)
 	if (!node)
 		return (NULL);
 	node->str = strdup(str);
+	if (!node->str)
+	{
+		free(node->str);
+		return (NULL);
+	}
 	node->next = node->prev = NULL;
 	return (node);
 }
@@ -34,10 +39,7 @@ List *add_node_end(List **list, char *str)
 		return (NULL);
 	if (*list)
 	{
-		if ((*list)->prev)
-			end = (*list)->prev;
-		else
-			end = *list;
+		end = (*list)->prev;
 		end->next = node;
 		node->prev = end;
 		node->next = *list;
