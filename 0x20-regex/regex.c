@@ -14,13 +14,13 @@ int regex_match(char const *str, char const *pattern)
 	{
 		if (*(pattern + 1) == '*')
 			return (regex_match(str, pattern + 2));
-		return (*pattern == '\0');
+		return (!*pattern);
 	}
 	if (*(pattern + 1) == '*')
 	{
-		if (*pattern == '.')
+		if (*pattern == '.' || *pattern == *str)
 			return (regex_match(str + 1, pattern) || regex_match(str, pattern + 2));
-		return (regex_match(str + 1, pattern) || regex_match(str, pattern + 2));
+		return (regex_match(str, pattern + 2));
 	}
 	if (*pattern == '.' || *pattern == *str)
 	{
