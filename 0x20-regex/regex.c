@@ -8,6 +8,8 @@
 */
 int regex_match(char const *str, char const *pattern)
 {
+	if (!str || !pattern)
+		return (0);
 	if (!*str)
 	{
 		if (*(pattern + 1) == '*')
