@@ -40,7 +40,7 @@ def isWinner(x, nums):
         return None
     prime_cnt = get_primes(nums)
     if prime_cnt is None:
-        return "Ben"
+        return None
     loses = 0
     for i in prime_cnt:
         if i % 2 == 0:
