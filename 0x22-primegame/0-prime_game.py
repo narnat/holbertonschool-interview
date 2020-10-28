@@ -12,6 +12,8 @@ def get_primes(nums):
     Use Sieve of Eratosthenes to get primes
     '''
     n = max(nums)
+    if n < 1:
+        return None
     prime_cnt = [0] * len(nums)
     prime = [True for _ in range(n + 1)]
     p = 2
@@ -34,7 +36,11 @@ def isWinner(x, nums):
     '''
     Prime Game
     '''
+    if x == 0 or nums is None:
+        return None
     prime_cnt = get_primes(nums)
+    if prime_cnt is None:
+        return "Ben"
     loses = 0
     for i in prime_cnt:
         if i % 2 == 0:
