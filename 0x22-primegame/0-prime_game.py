@@ -36,7 +36,7 @@ def isWinner(x, nums):
     '''
     Prime Game
     '''
-    if x == 0 or nums is None:
+    if x <= 0 or nums is None or min(nums) < 0:
         return None
     prime_cnt = get_primes(nums)
     if prime_cnt is None:
